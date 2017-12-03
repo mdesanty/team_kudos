@@ -6,6 +6,6 @@ class Api::V1::KudosController < ActionController::API
   end
 
   def event
-    render json: 'Some Event'
+    render json: params[:challenge]
   end
 end
