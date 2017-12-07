@@ -2,14 +2,14 @@ require 'test_helper'
 
 class CreateKudoServiceTest < ActiveSupport::TestCase
   test 'execute should create kudo' do
-    slack_team_data = {slack_identifier: '12345K'}
-    from_slack_user_data = {slack_identifier: '123A'}
-    to_slack_user_data = {slack_identifier: '123B'}
+    slack_team_identifier = '12345K'
+    from_slack_user_identifier = '123A'
+    to_slack_user_identifier = '123B'
     message = '@steven gets :kudo: for something awesome'
 
     assert_difference(['Kudo.count', 'SlackTeam.count'], 1) do
       assert_difference('SlackUser.count', 2) do
-        @kudo = CreateKudoService.execute(slack_team_data, from_slack_user_data, to_slack_user_data, message)
+        @kudo = CreateKudoService.execute(message, {slack_team_identifier: slack_team_identifier, from_slack_user_identifier: from_slack_user_identifier, to_slack_user_identifier: to_slack_user_identifier})
       end
     end
 
