@@ -3,4 +3,5 @@ class Kudo < ApplicationRecord
 
   belongs_to :from_slack_user, class_name: 'SlackUser'
   belongs_to :to_slack_user, class_name: 'SlackUser'
+  belongs_to :slack_team
 end

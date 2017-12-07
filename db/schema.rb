@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203000219) do
+ActiveRecord::Schema.define(version: 20171203234550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,15 @@ ActiveRecord::Schema.define(version: 20171203000219) do
     t.bigint "to_slack_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "slack_team_id"
     t.index ["from_slack_user_id"], name: "index_kudos_on_from_slack_user_id"
     t.index ["to_slack_user_id"], name: "index_kudos_on_to_slack_user_id"
+  end
+
+  create_table "slack_teams", force: :cascade do |t|
+    t.string "slack_identifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "slack_users", force: :cascade do |t|
@@ -30,6 +37,8 @@ ActiveRecord::Schema.define(version: 20171203000219) do
     t.bigint "slack_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "slack_team_id"
+    t.string "slack_identifier"
     t.index ["slack_user_id"], name: "index_slack_users_on_slack_user_id"
   end
 
