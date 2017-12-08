@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :kudos do
         post :challenge, on: :collection
         post :event, on: :collection
+        get :install, on: :collection
       end
     end
   end

@@ -15,7 +15,12 @@ class Api::V1::KudosController < ActionController::API
     # Parameters with no emoji:
     # Parameters: {"token"=>"aOiKX5h7VtDa1i1gLiXujpAK", "team_id"=>"T0QGA5E0Z", "api_app_id"=>"A88T1SMMJ", "event"=>{"type"=>"message", "user"=>"U0QG8DQUF", "text"=>"Kudos for <@U18DA41HD>", "ts"=>"1512611129.000116", "channel"=>"G88E53QJV", "event_ts"=>"1512611129.000116"}, "type"=>"event_callback", "event_id"=>"Ev8ARKP6LT", "event_time"=>1512611129, "authed_users"=>["U0QG8DQUF"], "kudo"=>{"token"=>"aOiKX5h7VtDa1i1gLiXujpAK", "team_id"=>"T0QGA5E0Z", "api_app_id"=>"A88T1SMMJ", "event"=>{"type"=>"message", "user"=>"U0QG8DQUF", "text"=>"Kudos for <@U18DA41HD>", "ts"=>"1512611129.000116", "channel"=>"G88E53QJV", "event_ts"=>"1512611129.000116"}, "type"=>"event_callback", "event_id"=>"Ev8ARKP6LT", "event_time"=>1512611129, "authed_users"=>["U0QG8DQUF"]}}
 
-    CreateKudoFromRequestServiceTest
+    CreateKudoFromRequestService.execute(params)
     render json: params[:challenge]
+  end
+
+  def install
+    access_response = SlackApiInterface.oauth_access(params['code'])
+    logger.info(access_response.inspect)
   end
 end
