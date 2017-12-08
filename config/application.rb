@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module TeamKudos
   class Application < Rails::Application
+    config.autoload_paths += %W( lib/ )
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
