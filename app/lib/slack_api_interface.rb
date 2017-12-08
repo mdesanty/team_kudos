@@ -24,7 +24,7 @@ class SlackApiInterface
   end
 
   def self.oauth_access(code)
-    response = post(OAUTH_ACCESS_ENDOINT, body: {client_id: client_id, client_secret: CLIENT_SECRET, code: code, redirect_url: REDIRECT_URL})
+    response = post(OAUTH_ACCESS_ENDOINT, body: {client_id: CLIENT_ID, client_secret: CLIENT_SECRET, code: code, redirect_url: REDIRECT_URL})
     return JSON.parse(response.body)
   end
 end
